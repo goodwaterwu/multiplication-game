@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --font-arcade: "Press Start 2P", system-ui;
+  --font-tech: "Orbitron", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 4px;
+}
+
+:root {
+  --background: oklch(0.15 0.05 280); /* Deep purple void */
+  --foreground: oklch(0.9 0.1 190); /* Cyan text */
+  --primary: oklch(0.65 0.25 320); /* Neon Pink */
+  --primary-foreground: oklch(1 1 0); /* White */
+  --secondary: oklch(0.2 0.05 280); /* Darker purple */
+  --secondary-foreground: oklch(0.9 0.1 190);
+  --destructive: oklch(0.6 0.2 20); /* Red */
+  --border: oklch(0.65 0.25 320); /* Pink border */
+  --input: oklch(0.2 0.05 280);
+  --ring: oklch(0.9 0.1 190); /* Cyan ring */
+  --radius: 0px;
+}
+
+body {
+  font-family: var(--font-tech);
+  @apply bg-background text-foreground overflow-hidden;
+}
+
+h1, h2, h3, .arcade-font {
+  font-family: var(--font-arcade);
+}
+
+.text-shadow-neon {
+  text-shadow: 0 0 10px var(--foreground);
+}
+
+.box-shadow-neon {
+  box-shadow: 0 0 10px var(--primary), inset 0 0 10px var(--primary);
+}
+
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.2) 50%,
+    rgba(0,0,0,0.2)
+  );
+  background-size: 100% 4px;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.3;
+}
+
+/* CRT Flicker Animation */
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.95; }
+  20% { opacity: 0.99; }
+  25% { opacity: 0.95; }
+  30% { opacity: 0.9; }
+  35% { opacity: 0.96; }
+  40% { opacity: 0.98; }
+  45% { opacity: 0.95; }
+  50% { opacity: 0.99; }
+  55% { opacity: 0.93; }
+  60% { opacity: 0.9; }
+  65% { opacity: 0.96; }
+  70% { opacity: 1; }
+  75% { opacity: 0.97; }
+  80% { opacity: 0.95; }
+  85% { opacity: 0.92; }
+  90% { opacity: 0.96; }
+  95% { opacity: 0.99; }
+  100% { opacity: 0.94; }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
